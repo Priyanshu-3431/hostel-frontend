@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Room Booking | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <div class="side-title">Student Panel</div>
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="roombook.html" class="active">🛏️ Room Book</a>
+    <a href="payment.html">💳 Payment</a>
+    <a href="payment.html#receipt">🧾 Receipt</a>
+    <a href="profile.html">👤 Profile</a>
+    <a href="#" id="logoutLink">🚪 Logout</a>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <h1>Room Booking</h1>
+      <div class="user-chip">👋 <span id="chipName">Loading...</span></div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="form-wrap" style="margin:0;">
+        <div id="bookingAlert" class="alert-box"></div>
+        <form id="bookingForm" novalidate>
+          <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" id="studentName" disabled />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input type="text" id="registrationNumber" disabled />
+            </div>
+            <div class="form-group">
+              <label>Branch</label>
+              <input type="text" id="branch" disabled />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hostelFee">Hostel Fee (₹)</label>
+              <input type="number" id="hostelFee" min="0" value="15000" required />
+            </div>
+            <div class="form-group">
+              <label for="messFee">Mess Fee (₹)</label>
+              <input type="number" id="messFee" min="0" value="9000" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Total Fee</label>
+            <input type="text" id="totalFee" disabled style="font-weight:700; color:var(--primary);" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="bookingSubmitBtn">Proceed to Payment</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Fee Structure (per semester)</h3>
+        <table class="info-table">
+          <tr><td>Hostel Fee</td><td>₹ 15,000</td></tr>
+          <tr><td>Mess Fee</td><td>₹ 9,000</td></tr>
+          <tr><td>Total</td><td>₹ 24,000</td></tr>
+        </table>
+        <p class="mt-1" style="color:var(--muted); font-size:0.85rem;">
+          Fee amounts are pre-filled based on the standard hostel fee structure but can be
+          adjusted if a different fee slab applies to you (e.g. partial scholarship). Your
+          booking will be reviewed by the hostel administration.
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>

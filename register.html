@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Registration | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li id="navAuthSlot" style="display:flex; gap:26px; align-items:center;">
+        <a href="login.html">Login</a>
+        <a href="admin-login.html">Admin Login</a>
+        <a href="register.html" class="nav-cta">Register</a>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="section" style="padding-top:50px;">
+  <div class="container" style="max-width:560px;">
+    <div class="section-header">
+      <span class="eyebrow">Join GP BARH Hostel</span>
+      <h2>Student Registration</h2>
+      <p>Create your account to book a hostel room and manage your fee payments online.</p>
+    </div>
+
+    <div class="form-wrap">
+      <div id="registerAlert" class="alert-box"></div>
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="e.g. priyanshu yadav" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" placeholder="10-digit mobile number" required />
+          </div>
+          <div class="form-group">
+            <label for="registrationNumber">Registration Number</label>
+            <input type="text" id="registrationNumber" placeholder="e.g. GPB2024CS045" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="branch">Branch</label>
+          <select id="branch" required>
+            <option value="">Select your branch</option>
+            <option>Artificial intelligence and mechine learning</option>
+            <option>Mechanical CAD/CAM</option>
+            <option>Electrical Roboticd</option>
+            <option>Civil Construction  </option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="At least 6 characters" required />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Create Account</button>
+        <p class="form-footer-link">Already have an account? <a href="login.html">Login here</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">&copy; 2026 GP BARH Hostel.Developed by priyanshu yadav</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

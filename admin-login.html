@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li style="display:flex; gap:26px; align-items:center;">
+        <a href="login.html">Student Login</a>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="section" style="padding-top:60px;">
+  <div class="container" style="max-width:420px;">
+    <div class="section-header">
+      <span class="eyebrow">Staff Access Only</span>
+      <h2>Admin Login</h2>
+      <p>Restricted area for hostel administration staff.</p>
+    </div>
+
+    <div class="form-wrap">
+      <div id="adminLoginAlert" class="alert-box"></div>
+      <form id="adminLoginForm" novalidate>
+        <div class="form-group">
+          <label for="username">Admin Username</label>
+          <input type="text" id="username" placeholder="Enter admin username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter admin password" required />
+        </div>
+        <button type="submit" class="btn btn-dark btn-block" id="adminLoginBtn">Login as Admin</button>
+        <p class="form-footer-link">Not an admin? <a href="login.html">Go to Student Login</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">&copy; 2026 GP BARH Hostel. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

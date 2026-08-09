@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Profile | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <div class="side-title">Student Panel</div>
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="roombook.html">🛏️ Room Book</a>
+    <a href="payment.html">💳 Payment</a>
+    <a href="payment.html#receipt">🧾 Receipt</a>
+    <a href="profile.html" class="active">👤 Profile</a>
+    <a href="#" id="logoutLink">🚪 Logout</a>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <h1>My Profile</h1>
+      <div class="user-chip">👋 <span id="chipName">Loading...</span></div>
+    </div>
+
+    <div class="card" style="max-width:560px;">
+      <h3>Account Details</h3>
+      <table class="info-table">
+        <tr><td>Name</td><td id="pName">-</td></tr>
+        <tr><td>Email</td><td id="pEmail">-</td></tr>
+        <tr><td>Mobile</td><td id="pMobile">-</td></tr>
+        <tr><td>Registration Number</td><td id="pRegNo">-</td></tr>
+        <tr><td>Branch</td><td id="pBranch">-</td></tr>
+        <tr><td>Room / Booking Status</td><td id="pBookingStatus">-</td></tr>
+        <tr><td>Payment Status</td><td id="pPaymentStatus">-</td></tr>
+      </table>
+      <p class="mt-2" style="font-size:0.85rem; color:var(--muted);">
+        To change any of the details above (name, email, registration number), please contact
+        the hostel office directly through the <a href="contact.html">Contact page</a> - sensitive
+        account information cannot be self-edited for security reasons.
+      </p>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  requireStudentAuth();
+  document.getElementById("logoutLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    Auth.logoutStudent();
+  });
+
+  function badgeFor(status) {
+    if (!status) return `<span class="badge badge-info">Not Available</span>`;
+    const map = { Successful: "badge-success", confirmed: "badge-success", Pending: "badge-pending", pending: "badge-pending", Failed: "badge-error", Rejected: "badge-error" };
+    return `<span class="badge ${map[status] || "badge-info"}">${status}</span>`;
+  }
+
+  (async () => {
+    const user = Auth.getUser();
+    if (user) document.getElementById("chipName").textContent = user.name;
+    try {
+      const data = await apiFetch("/auth/profile", { auth: true });
+      document.getElementById("pName").textContent = data.profile.name;
+      document.getElementById("pEmail").textContent = data.profile.email;
+      document.getElementById("pMobile").textContent = data.profile.mobile;
+      document.getElementById("pRegNo").textContent = data.profile.registration_number;
+      document.getElementById("pBranch").textContent = data.profile.branch;
+      document.getElementById("pBookingStatus").innerHTML = badgeFor(data.booking ? data.booking.booking_status : null);
+      document.getElementById("pPaymentStatus").innerHTML = badgeFor(data.booking ? data.booking.payment_status : null);
+    } catch (err) {
+      showToast(err.message, "error");
+    }
+  })();
+</script>
+</body>
+</html>

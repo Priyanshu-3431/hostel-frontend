@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li id="navAuthSlot" style="display:flex; gap:26px; align-items:center;">
+        <a href="login.html">Login</a>
+        <a href="admin-login.html">Admin Login</a>
+        <a href="register.html" class="nav-cta">Register</a>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="section" style="padding-top:50px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Take a Look</span>
+      <h2>Hostel Gallery</h2>
+      <p>A glimpse of hostels, mess, campus and common facilities at GP BARH Hostel.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Static sample images shown first; admin-uploaded images are appended below -->
+      <div class="gallery-item" data-full="images/gallery/colleg2.jpeg"><img src="images/gallery/colleg2.jpeg" alt="GP BARH Campus" /></div>
+      <div class="gallery-item" data-full="images/gallery/m.1.jpeg"><img src="images/gallery/m.1.jpeg" alt="Hostel Building" /></div>
+      <div class="gallery-item" data-full="images/gallery/m2..jpeg"><img src="images/gallery/m2.jpeg" alt="Hostel" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.2.jpeg"><img src="images/gallery/p.2.jpeg" alt="Mess Hall" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.3.jpeg"><img src="images/gallery/p.3.jpeg" alt="Hostel Corridor" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.5.jpeg"><img src="images/gallery/p.5.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.6.jpeg"><img src="images/gallery/p.6.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.7.jpeg"><img src="images/gallery/p.7.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.8.jpeg"><img src="images/gallery/p.8.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.9.jpeg"><img src="images/gallery/p.9.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.10.jpeg"><img src="images/gallery/p.10.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.11.jpeg"><img src="images/gallery/p.11.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.12.jpeg"><img src="images/gallery/p.12.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.13.jpeg"><img src="images/gallery/p.13.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.14.jpeg"><img src="images/gallery/p.14.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p16.jpeg"><img src="images/gallery/p16.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.18.jpeg"><img src="images/gallery/p.18.jpeg" alt="Reading" /></div>
+      <div class="gallery-item" data-full="images/gallery/p.19.jpeg"><img src="images/gallery/p.19.jpeg" alt="Reading" /></div>
+    </div>
+    <div class="empty-state" id="galleryEmpty" style="display:none;">No additional gallery images have been added yet.</div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <img id="lightboxImg" src="" alt="Preview" />
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand" style="color:#fff; margin-bottom:10px;"><span class="brand-badge">GB</span> GP BARH Hostel</div><p style="color:#a9bdd6; font-size:0.9rem;">Government Polytechnic Barh, Patna, Bihar - Official student hostel management portal.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="about.html">About Hostel</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="register.html">Student Registration</a></li></ul></div>
+      <div><h4>Portal</h4><ul><li><a href="login.html">Student Login</a></li><li><a href="admin-login.html">Admin Login</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Government Polytechnic Barh, Patna, Bihar - 803213</li><li>hostel.gpbarh@example.edu.in</li><li>+91 90000 00000</li></ul></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 GP BARH Hostel. Developed by priyanshu yadav.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add("open");
+  }
+  document.getElementById("lightboxClose").addEventListener("click", () => lightbox.classList.remove("open"));
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.classList.remove("open"); });
+
+  function bindGalleryClicks() {
+    document.querySelectorAll(".gallery-item").forEach((item) => {
+      item.addEventListener("click", () => openLightbox(item.dataset.full));
+    });
+  }
+  bindGalleryClicks();
+
+  // Load any additional images the admin has uploaded through the admin panel
+  (async () => {
+    try {
+      const data = await apiFetch("/gallery");
+      if (data.images && data.images.length) {
+        const grid = document.getElementById("galleryGrid");
+        data.images.forEach((img) => {
+          const div = document.createElement("div");
+          div.className = "gallery-item";
+          div.dataset.full = img.image_url;
+          div.innerHTML = `<img src="${img.image_url}" alt="${img.title || "Hostel photo"}" />`;
+          div.addEventListener("click", () => openLightbox(img.image_url));
+          grid.appendChild(div);
+        });
+      }
+    } catch (err) {
+      // Backend may not be running yet - the static sample images above still display fine.
+      console.warn("Gallery API unavailable:", err.message);
+    }
+  })();
+</script>
+</body>
+</html>

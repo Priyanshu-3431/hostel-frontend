@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | GP BARH Hostel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+    </div>
+  </nav>
+
+  <div class="dash-layout">
+    <aside class="sidebar">
+      <div class="side-title">Student Panel</div>
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <a href="roombook.html">🛏️ Room Book</a>
+      <a href="payment.html" class="active">💳 Payment</a>
+      <a href="payment.html#receipt">🧾 Receipt</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="#" id="logoutLink">🚪 Logout</a>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-header">
+        <h1>Payment</h1>
+        <div class="user-chip">👋 <span id="chipName">Loading...</span></div>
+      </div>
+
+      <div id="noBookingState" class="empty-state" style="display:none;">
+        You haven't booked a room yet.
+        <div class="mt-2"><a href="roombook.html" class="btn btn-primary">Book Your Room</a></div>
+      </div>
+
+      <!-- Pending / Not-yet-paid: show fee summary + QR + UTR form -->
+      <div id="paymentFormState" style="display:none;">
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Fee Summary</h3>
+            <table class="info-table">
+              <tr>
+                <td>Student Name</td>
+                <td id="sumName"></td>
+              </tr>
+              <tr>
+                <td>Registration Number</td>
+                <td id="sumRegNo"></td>
+              </tr>
+              <tr>
+                <td>Hostel Fee</td>
+                <td id="sumHostelFee"></td>
+              </tr>
+              <tr>
+                <td>Mess Fee</td>
+                <td id="sumMessFee"></td>
+              </tr>
+              <tr>
+                <td>Total Amount</td>
+                <td id="sumTotalFee"></td>
+              </tr>
+            </table>
+
+            <div class="qr-box mt-2">
+              <img src="images/gp.jpg" alt="Hostel Payment QR Code"
+                onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=GP-BARH-HOSTEL-PAYMENT'" />
+              <p style="font-weight:600;">Scan &amp; Pay via UPI</p>
+              <p style="color:var(--muted); font-size:0.85rem;">GP BARH Hostel Office &middot; UPI ID: gpbarhhostel@upi
+              </p>
+            </div>
+          </div>
+
+          <div class="form-wrap" style="margin:0;">
+            <h3 style="margin-top:0;">Verify Your Payment</h3>
+            <div id="paymentAlert" class="alert-box"></div>
+            <form id="paymentForm" novalidate>
+              <div class="form-group">
+                <label for="utrNumber">UTR / Transaction Number</label>
+                <input type="text" id="utrNumber" placeholder="Enter the 12-digit UTR from your payment app" required />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" id="paymentSubmitBtn">Verify Payment</button>
+            </form>
+            <p class="mt-1" style="font-size:0.82rem; color:var(--muted);">
+              After you submit the UTR, the hostel administration will verify it against the bank
+              statement. Your status will update to "Successful" once approved.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending verification -->
+      <div id="pendingState" class="card" style="display:none; text-align:center;">
+        <h3>⏳ Payment Pending Verification</h3>
+        <p style="color:var(--muted);">Your UTR <strong id="pendingUtr"></strong> has been submitted and is awaiting
+          verification by hostel administration.</p>
+        <button class="btn btn-outline" id="refreshStatusBtn"
+          style="color:var(--primary); border-color: var(--primary);">Refresh Status</button>
+      </div>
+
+      <!-- Failed / rejected -->
+      <div id="failedState" class="card" style="display:none; text-align:center;">
+        <h3>❌ Payment Not Verified</h3>
+        <p style="color:var(--muted);">Your last payment attempt (UTR: <strong id="failedUtr"></strong>) was marked as
+          <strong id="failedStatus"></strong>. Please try again with a valid UTR.</p>
+        <button class="btn btn-primary" id="retryPaymentBtn">Retry Payment</button>
+      </div>
+
+      <!-- Success -->
+      <div id="successState" class="success-box" style="display:none;">
+        <div class="success-icon">✓</div>
+        <h2>Payment Successful</h2>
+        <div class="card" style="max-width:480px; margin:20px auto; text-align:left;">
+          <table class="info-table">
+            <tr>
+              <td>Student Name</td>
+              <td id="okName">-</td>
+            </tr>
+            <tr>
+              <td>Registration Number</td>
+              <td id="okRegNo">-</td>
+            </tr>
+            <tr>
+              <td>Branch</td>
+              <td id="okBranch">-</td>
+            </tr>
+            <tr>
+              <td>Hostel Fee</td>
+              <td id="okHostelFee">-</td>
+            </tr>
+            <tr>
+              <td>Mess Fee</td>
+              <td id="okMessFee">-</td>
+            </tr>
+            <tr>
+              <td>Total Fee</td>
+              <td id="okTotalFee">-</td>
+            </tr>
+            <tr>
+              <td>UTR Number</td>
+              <td id="okUtr">-</td>
+            </tr>
+            <tr>
+              <td>Payment Status</td>
+              <td id="okStatus">-</td>
+            </tr>
+            <tr>
+              <td>Payment Date</td>
+              <td id="okDate">-</td>
+            </tr>
+          </table>
+        </div>
+        <button class="btn btn-primary" id="receipt">Download Receipt PDF</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+
+</html>

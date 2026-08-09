@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel &middot; Admin</a>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="sidebar">
+    <div class="side-title">Admin Panel</div>
+    <a href="#dashboard" class="admin-nav-link active" data-tab="dashboard">📊 Dashboard</a>
+    <a href="#students" class="admin-nav-link" data-tab="students">🎓 Students</a>
+    <a href="#registrations" class="admin-nav-link" data-tab="students">📝 Registrations</a>
+    <a href="#bookings" class="admin-nav-link" data-tab="bookings">🛏️ Room Bookings</a>
+    <a href="#payments" class="admin-nav-link" data-tab="payments">💳 Payments</a>
+    <a href="#receipts" class="admin-nav-link" data-tab="payments">🧾 Receipts</a>
+    <a href="#messages" class="admin-nav-link" data-tab="messages">✉️ Contact Messages</a>
+    <a href="#gallery" class="admin-nav-link" data-tab="gallery">🖼️ Gallery</a>
+    <a href="#" id="adminLogoutLink">🚪 Logout</a>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-header">
+      <h1 id="tabTitle">Dashboard</h1>
+      <div class="user-chip">🛡️ <span id="adminChipName">Admin</span></div>
+    </div>
+
+    <!-- DASHBOARD TAB -->
+    <section class="admin-tab" id="tab-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="value" id="statTotalStudents">-</div><div class="label">Total Students</div></div>
+        <div class="stat-card"><div class="value" id="statTotalRegistrations">-</div><div class="label">Total Registrations</div></div>
+        <div class="stat-card"><div class="value" id="statTotalBookings">-</div><div class="label">Total Room Bookings</div></div>
+        <div class="stat-card"><div class="value" id="statSuccessfulPayments">-</div><div class="label">Successful Payments</div></div>
+        <div class="stat-card"><div class="value" id="statPendingPayments">-</div><div class="label">Pending Payments</div></div>
+        <div class="stat-card"><div class="value" id="statTotalMessages">-</div><div class="label">Contact Messages</div></div>
+      </div>
+    </section>
+
+    <!-- STUDENTS TAB -->
+    <section class="admin-tab" id="tab-students" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input type="text" id="studentSearch" placeholder="Search by name, email, reg. no, branch..." />
+          <span id="studentCount" style="color:var(--muted); font-size:0.85rem;"></span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Reg. No.</th><th>Branch</th><th>Registered On</th><th>Status</th></tr></thead>
+            <tbody id="studentsTableBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="studentsPagination"></div>
+      </div>
+    </section>
+
+    <!-- BOOKINGS TAB -->
+    <section class="admin-tab" id="tab-bookings" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-toolbar"><strong>All Room Bookings</strong></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Student</th><th>Reg. No.</th><th>Branch</th><th>Hostel Fee</th><th>Mess Fee</th><th>Total</th><th>Booking Status</th><th>Payment Status</th><th>Date</th></tr></thead>
+            <tbody id="bookingsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS TAB -->
+    <section class="admin-tab" id="tab-payments" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-toolbar"><strong>Payment Management</strong></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Payment ID</th><th>Student</th><th>Reg. No.</th><th>UTR No.</th><th>Total Amount</th><th>Payment Date</th><th>Status</th><th>Update</th></tr></thead>
+            <tbody id="paymentsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESSAGES TAB -->
+    <section class="admin-tab" id="tab-messages" style="display:none;">
+      <div class="table-wrap">
+        <div class="table-toolbar"><strong>Contact Messages</strong></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th><th>Status</th><th>Update</th></tr></thead>
+            <tbody id="messagesTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY TAB -->
+    <section class="admin-tab" id="tab-gallery" style="display:none;">
+      <div class="card mb-2">
+        <h3>Add Gallery Image</h3>
+        <div id="galleryAlert" class="alert-box"></div>
+        <form id="addGalleryForm" class="form-row" style="align-items:flex-end;">
+          <div class="form-group">
+            <label for="galleryTitle">Title (optional)</label>
+            <input type="text" id="galleryTitle" placeholder="e.g. Hostel Block A" />
+          </div>
+          <div class="form-group">
+            <label for="galleryUrl">Image URL</label>
+            <input type="text" id="galleryUrl" placeholder="https://... or images/gallery/photo.jpg" required />
+          </div>
+          <button type="submit" class="btn btn-primary" style="height:44px;">Add Image</button>
+        </form>
+      </div>
+      <div class="gallery-grid" id="adminGalleryGrid"></div>
+    </section>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

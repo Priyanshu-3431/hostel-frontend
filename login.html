@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Login | GP BARH Hostel</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-badge">GB</span>GP BARH Hostel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li id="navAuthSlot" style="display:flex; gap:26px; align-items:center;">
+        <a href="login.html">Login</a>
+        <a href="admin-login.html">Admin Login</a>
+        <a href="register.html" class="nav-cta">Register</a>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="section" style="padding-top:60px;">
+  <div class="container" style="max-width:460px;">
+    <div class="section-header">
+      <span class="eyebrow">Welcome Back</span>
+      <h2>Student Login</h2>
+      <p>Login with your email or registration number to access your dashboard.</p>
+    </div>
+
+    <div class="form-wrap">
+      <div id="loginAlert" class="alert-box"></div>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="identifier">Email / Registration Number</label>
+          <input type="text" id="identifier" placeholder="you@example.com or GPB2024CS045" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Login</button>
+        <p class="form-footer-link">Don't have an account? <a href="register.html">Register here</a></p>
+        <p class="form-footer-link">Are you an admin? <a href="admin-login.html">Admin Login</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">&copy; 2026 GP BARH Hostel. Developed by priyanshu yadav.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
