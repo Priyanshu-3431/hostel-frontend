@@ -7,13 +7,7 @@
 // (http://localhost:5000), relative "/api" calls just work.
 // If someone opens the HTML files with a different dev server (e.g. Live
 // Server on port 5500), fall back to talking to the API on port 5000.
-const API_BASE = (() => {
-  const { protocol, hostname, port } = window.location;
-  if (protocol === "file:" || (port && port !== "5000")) {
-    return `http://${hostname || "localhost"}:5000/api`;
-  }
-  return "/api";
-})();
+const API_BASE = "https://hostel-backend-npe4.onrender.com/api";
 
 /* ---------- Toast notifications ---------- */
 function ensureToastContainer() {
