@@ -35,7 +35,7 @@ function money(v) {
   }
 
   try {
-    const data = await apiFetch("/auth/profile", { auth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/auth/profile", { auth: true });
     console.log(data)
     const profile = data.profile;
     console.log(profile)
@@ -46,7 +46,7 @@ function money(v) {
     document.getElementById("infoMobile").textContent = profile.mobile;
     document.getElementById("chipName").textContent = profile.name;
 
-    const bookingData = await apiFetch("/booking/my", { auth: true });
+    const bookingData = await apiFetch("https://hostel-backend-npe4.onrender.com/booking/my", { auth: true });
     const booking = bookingData.booking;
 
     const actionWrap = document.getElementById("bookingActionWrap");

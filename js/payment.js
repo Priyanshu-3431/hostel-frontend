@@ -29,7 +29,7 @@ async function loadBookingAndRender() {
   if (user) document.getElementById("chipName").textContent = user.name;
 
   try {
-    const data = await apiFetch("/booking/my", { auth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/booking/my", { auth: true });
     currentBooking = data.booking;
     hideAllStates();
 
@@ -104,7 +104,7 @@ document.getElementById("paymentForm")?.addEventListener("submit", async (e) => 
   const btn = document.getElementById("paymentSubmitBtn");
   setButtonLoading(btn, true, "Verifying...");
   try {
-    await apiFetch("/payment/submit", {
+    await apiFetch("https://hostel-backend-npe4.onrender.com/payment/submit", {
       method: "POST",
       auth: true,
       body: { bookingId: currentBooking.id, utrNumber },

@@ -34,7 +34,7 @@ if (registerForm) {
 
     setButtonLoading(registerBtn, true, "Creating account...");
     try {
-      const data = await apiFetch("/auth/register", {
+      const data = await apiFetch("https://hostel-backend-npe4.onrender.com/auth/register", {
         method: "POST",
         body: { name, email, mobile, registrationNumber, branch, password, confirmPassword },
       });
@@ -70,7 +70,7 @@ if (loginForm) {
 
     setButtonLoading(loginBtn, true, "Logging in...");
     try {
-      const data = await apiFetch("/auth/login", { method: "POST", body: { identifier, password } });
+      const data = await apiFetch("https://hostel-backend-npe4.onrender.com/auth/login", { method: "POST", body: { identifier, password } });
       Auth.setToken(data.token);
       Auth.setUser(data.user);
       showToast(`Welcome, ${data.user.name}!`, "success");
@@ -104,7 +104,7 @@ if (adminLoginForm) {
 
     setButtonLoading(adminLoginBtn, true, "Logging in...");
     try {
-      const data = await apiFetch("/auth/admin-login", { method: "POST", body: { username, password } });
+      const data = await apiFetch("https://hostel-backend-npe4.onrender.com/auth/admin-login", { method: "POST", body: { username, password } });
       Auth.setAdminToken(data.token);
       Auth.setAdmin(data.admin);
       showToast("Welcome back, admin!", "success");

@@ -72,7 +72,7 @@ initialTabFromHash();
 /* ---------- Dashboard summary ---------- */
 async function loadDashboardSummary() {
   try {
-    const data = await apiFetch("/admin/dashboard-summary", { adminAuth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/admin/dashboard-summary", { adminAuth: true });
     const s = data.summary;
     document.getElementById("statTotalStudents").textContent = s.totalStudents;
     document.getElementById("statTotalRegistrations").textContent = s.totalRegistrations;
@@ -94,7 +94,7 @@ let studentSearchDebounce = null;
 async function loadStudents() {
   try {
     const params = new URLSearchParams({ search: studentSearchTerm, page: studentPage, limit: studentLimit });
-    const data = await apiFetch(`/admin/students?${params.toString()}`, { adminAuth: true });
+    const data = await apiFetch(`https://hostel-backend-npe4.onrender.com/admin/students?${params.toString()}`, { adminAuth: true });
     const tbody = document.getElementById("studentsTableBody");
     tbody.innerHTML = "";
     if (data.students.length === 0) {
@@ -138,7 +138,7 @@ document.getElementById("studentSearch").addEventListener("input", (e) => {
 /* ---------- Bookings table ---------- */
 async function loadBookings() {
   try {
-    const data = await apiFetch("/booking/admin/all", { adminAuth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/booking/admin/all", { adminAuth: true });
     const tbody = document.getElementById("bookingsTableBody");
     tbody.innerHTML = "";
     if (data.bookings.length === 0) {
@@ -203,7 +203,7 @@ async function loadBookings() {
 /* ---------- Payments table ---------- */
 async function loadPayments() {
   try {
-    const data = await apiFetch('/payment/admin/all', { adminAuth: true });
+    const data = await apiFetch('https://hostel-backend-npe4.onrender.com/payment/admin/all', { adminAuth: true });
     const tbody = document.getElementById('paymentsTableBody');
     tbody.innerHTML = '';
 
@@ -242,7 +242,7 @@ async function loadPayments() {
     document.querySelectorAll('.payment-status-select').forEach((sel) => {
       sel.addEventListener('change', async () => {
         try {
-          await apiFetch(`/payment/admin/${sel.dataset.id}/status`, {
+          await apiFetch(`https://hostel-backend-npe4.onrender.com/payment/admin/${sel.dataset.id}/status`, {
             method: 'PUT',
             adminAuth: true,
             body: { status: sel.value }
@@ -262,7 +262,7 @@ async function loadPayments() {
 /* ---------- Contact messages table ---------- */
 async function loadMessages() {
   try {
-    const data = await apiFetch("/contact/admin/all", { adminAuth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/contact/admin/all", { adminAuth: true });
     const tbody = document.getElementById("messagesTableBody");
     tbody.innerHTML = "";
     if (data.messages.length === 0) {
@@ -286,7 +286,7 @@ async function loadMessages() {
     document.querySelectorAll(".message-status-select").forEach((sel) => {
       sel.addEventListener("change", async () => {
         try {
-          await apiFetch(`/contact/admin/${sel.dataset.id}/status`, {
+          await apiFetch(`https://hostel-backend-npe4.onrender.com/contact/admin/${sel.dataset.id}/status`, {
             method: "PUT",
             adminAuth: true,
             body: { status: sel.value },
@@ -306,7 +306,7 @@ async function loadMessages() {
 /* ---------- Gallery management ---------- */
 async function loadGalleryAdmin() {
   try {
-    const data = await apiFetch("/gallery");
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/gallery");
     const grid = document.getElementById("adminGalleryGrid");
     grid.innerHTML = "";
     if (data.images.length === 0) {
@@ -325,7 +325,7 @@ async function loadGalleryAdmin() {
       btn.addEventListener("click", async (e) => {
         e.stopPropagation();
         try {
-          await apiFetch(`/gallery/admin/${btn.dataset.id}`, { method: "DELETE", adminAuth: true });
+          await apiFetch(`https://hostel-backend-npe4.onrender.com/gallery/admin/${btn.dataset.id}`, { method: "DELETE", adminAuth: true });
           showToast("Image removed.", "success");
           loadGalleryAdmin();
         } catch (err) {
@@ -348,7 +348,7 @@ document.getElementById("addGalleryForm").addEventListener("submit", async (e) =
     return;
   }
   try {
-    await apiFetch("/gallery/admin", { method: "POST", adminAuth: true, body: { title, imageUrl } });
+    await apiFetch("https://hostel-backend-npe4.onrender.com/gallery/admin", { method: "POST", adminAuth: true, body: { title, imageUrl } });
     showToast("Image added to gallery.", "success");
     document.getElementById("addGalleryForm").reset();
     loadGalleryAdmin();

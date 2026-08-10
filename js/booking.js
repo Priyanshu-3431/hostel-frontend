@@ -27,7 +27,7 @@ recalcTotal();
   if (user) document.getElementById("chipName").textContent = user.name;
 
   try {
-    const data = await apiFetch("/auth/profile", { auth: true });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/auth/profile", { auth: true });
     document.getElementById("studentName").value = data.profile.name;
     document.getElementById("registrationNumber").value = data.profile.registrationNumber;
     document.getElementById("branch").value = data.profile.branch;
@@ -58,7 +58,7 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
   const btn = document.getElementById("bookingSubmitBtn");
   setButtonLoading(btn, true, "Saving booking...");
   try {
-    const data = await apiFetch("/booking", { method: "POST", auth: true, body: { hostelFee, messFee } });
+    const data = await apiFetch("https://hostel-backend-npe4.onrender.com/booking", { method: "POST", auth: true, body: { hostelFee, messFee } });
     showToast("Room booking saved. Redirecting to payment...", "success");
     setTimeout(() => (window.location.href = `payment.html?booking=${data.booking.id}`), 900);
   } catch (err) {
