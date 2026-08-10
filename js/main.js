@@ -124,14 +124,12 @@ const Auth = {
   },
 };
 
-// Redirect to login if a protected student page is opened without a token
 function requireStudentAuth() {
   if (!Auth.getToken()) {
     window.location.href = "login.html";
   }
 }
 
-// Redirect to admin login if a protected admin page is opened without a token
 function requireAdminAuth() {
   if (!Auth.getAdminToken()) {
     window.location.href = "admin-login.html";
@@ -184,7 +182,6 @@ async function apiFetch(path, { method = "GET", body, auth = false, adminAuth = 
   return data;
 }
 
-// Download a protected file (e.g. PDF receipt) that requires an auth header
 async function downloadProtectedFile(path, filename, { auth = false } = {}) {
   const headers = {};
   if (auth && Auth.getToken()) {
@@ -211,7 +208,7 @@ async function downloadProtectedFile(path, filename, { auth = false } = {}) {
   window.URL.revokeObjectURL(url);
 }
 
-/* ---------- Navbar (mobile hamburger + active link + login state) ---------- */
+/* ---------- Navbar ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
@@ -222,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Highlight current page in nav
   const current = window.location.pathname.split("/").pop() || "index.html";
 
   document.querySelectorAll(".nav-links a").forEach((link) => {
@@ -231,7 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // If a student is already logged in, swap Login/Register for Dashboard/Logout
   const loginSlot = document.getElementById("navAuthSlot");
 
   if (loginSlot && Auth.getToken()) {
