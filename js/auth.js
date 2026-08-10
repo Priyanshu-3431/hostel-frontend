@@ -28,15 +28,6 @@ if (registerForm) {
       hasError = true;
     }
 
-    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
-      setFieldError("email", "Enter a valid email.");
-      hasError = true;
-    }
-
-    if (!/^[6-9]\\d{9}$/.test(mobile)) {
-      setFieldError("mobile", "Enter a valid 10-digit mobile number.");
-      hasError = true;
-    }
 
     if (!registrationNumber) {
       setFieldError("registrationNumber", "Registration number is required.");
@@ -48,10 +39,6 @@ if (registerForm) {
       hasError = true;
     }
 
-    if (password.length < 6) {
-      setFieldError("password", "Password must be at least 6 characters.");
-      hasError = true;
-    }
 
     if (password !== confirmPassword) {
       setFieldError("confirmPassword", "Passwords do not match.");
